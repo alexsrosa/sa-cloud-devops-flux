@@ -26,10 +26,10 @@ spec:
     configuration:
       provider: aws
       backupStorageLocation:
-        bucket: "velero-sa-bucket"
+        bucket: "sa-velero-bucket"
         config:
-          region: "fra1"  # e.g.: nyc1
-          s3Url: "https://velero-sa-bucket.fra1.digitaloceanspaces.com"  # e.g.: https://nyc1.digitaloceanspaces.com
+          region: "fra1"
+          s3Url: "https://sa-velero-bucket.fra1.digitaloceanspaces.com"
       volumeSnapshotLocation:
         provider: digitalocean.com/velero
     deployRestic: false
