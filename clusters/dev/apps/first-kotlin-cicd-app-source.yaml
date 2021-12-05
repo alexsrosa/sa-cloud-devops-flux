@@ -8,5 +8,5 @@ spec:
   interval: 30s
   ref:
     branch: master
-  url: https://github.com/alexsrosa/first-kotlin-cicd-app
+  url: ssh://git@github.com/alexsrosa/first-kotlin-cicd-app
 
