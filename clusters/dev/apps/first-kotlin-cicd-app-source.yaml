@@ -9,4 +9,6 @@ spec:
   ref:
     branch: main
   url: ssh://git@github.com/alexsrosa/first-kotlin-cicd-app
+  secretRef:
+    name: flux-system
 
