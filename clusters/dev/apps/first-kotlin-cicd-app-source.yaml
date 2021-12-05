@@ -8,7 +8,7 @@ spec:
   interval: 30s
   ref:
     branch: main
-  url: ssh://git@github.com/alexsrosa/first-kotlin-cicd-app
+  url: ssh://git@github.com:alexsrosa/first-kotlin-cicd-app.git
   secretRef:
     name: flux-system
 
