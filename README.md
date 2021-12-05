@@ -11,3 +11,8 @@ flux check
 ## kubectl 
 
 kubectl port-forward pod/first-kotlin-cicd-app-7c9978b4bf-6n9zq 8888:8080
+
+
+## Logs do Ingress
+
+kubectl logs -f service/ingress-nginx-controller -n ingress-nginx
