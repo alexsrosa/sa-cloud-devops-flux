@@ -11,15 +11,17 @@ spec:
   sourceRef:
     kind: GitRepository
     name: fists-kotlin-cicd-app
-  targetNamespace: default
+  targetNamespace: apps
   patches:
     - patch: |-
         apiVersion: autoscaling/v2beta2
         kind: HorizontalPodAutoscaler
         metadata:
           name: fists-kotlin-cicd-app
+          namespace: apps
         spec:
           minReplicas: 3
       target:
         name: fists-kotlin-cicd-app
+        namespace: apps
         kind: HorizontalPodAutoscaler
