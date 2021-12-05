@@ -10,7 +10,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: podinfo
+    name: fists-kotlin-cicd-app
   targetNamespace: default
   patches:
     - patch: |-
