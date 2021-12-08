@@ -18,6 +18,19 @@ flux create image repository fists-kotlin-cicd-app \
   --export > ./clusters/dev/first-kotlin-cicd-app-registry.yaml
 ```
 
+### Create Image Policy
+
+```shell
+flux create image policy fists-kotlin-cicd-app \
+  --image-ref=fists-kotlin-cicd-app \
+  --select-semver=5.0.x \
+  --export > ./clusters/dev/apps/first-kotlin-cicd-app-policy.yaml
+```
+
+### Consult
+
+flux get images all --all-namespaces
+
 ## kubectl 
 
 kubectl port-forward pod/first-kotlin-cicd-app-7c9978b4bf-6n9zq 8888:8080
