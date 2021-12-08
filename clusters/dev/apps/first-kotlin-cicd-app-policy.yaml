@@ -1,0 +1,13 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: fists-kotlin-cicd-app
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: fists-kotlin-cicd-app
+  policy:
+    semver:
+      range: 5.0.x
+

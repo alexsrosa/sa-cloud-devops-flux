@@ -1,0 +1,11 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: fists-kotlin-cicd-app
+  namespace: flux-system
+spec:
+  image: registry.digitalocean.com/sa-container-registry-dev/fists-kotlin-cicd-app
+  interval: 1m0s
+  secretRef:
+    name: docker-cfg
