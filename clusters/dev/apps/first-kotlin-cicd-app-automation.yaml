@@ -24,6 +24,6 @@ spec:
     kind: GitRepository
     name: fists-kotlin-cicd-app
   update:
-    path: ./clusters/dev/apps
+    path: ./kustomize
     strategy: Setters
 
