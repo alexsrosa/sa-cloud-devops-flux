@@ -14,13 +14,16 @@ spec:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
       messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+      signingKey:
+        secretRef:
+          name: first-kotlin-cicd-app
     push:
       branch: main
   interval: 1m0s
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: fists-kotlin-cicd-app
   update:
-    path: ./clusters/dev/flux-system
+    path: ./clusters/dev/apps
     strategy: Setters
 
