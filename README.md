@@ -27,6 +27,20 @@ flux create image policy fists-kotlin-cicd-app \
   --export > ./clusters/dev/apps/first-kotlin-cicd-app-policy.yaml
 ```
 
+### Create Image Update
+
+```shell
+flux create image update flux-system \
+    --git-repo-ref=flux-system \
+    --git-repo-path="./clusters/dev/flux-system" \
+    --checkout-branch=main \
+    --push-branch=main \
+    --author-name=fluxcdbot \
+    --author-email=fluxcdbot@users.noreply.github.com \
+    --commit-template="{{range .Updated.Images}}{{println .}}{{end}}" \
+    --export > ./clusters/dev/flux-system/flux-system-automation.yaml
+```
+
 ### Consult
 
 flux get images all --all-namespaces
