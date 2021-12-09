@@ -53,3 +53,24 @@ kubectl port-forward pod/first-kotlin-cicd-app-7c9978b4bf-6n9zq 8888:8080
 ## Logs do Ingress
 
 kubectl logs -f service/ingress-nginx-controller -n ingress-nginx
+
+## Install sealed
+
+```shell
+flux create source helm sealed-secrets \
+  --url="https://bitnami-labs.github.io/sealed-secrets" \
+  --interval="10m" \
+  --export > ./clusters/dev/helm/repositories/sealed-secrets.yaml
+```
+
+```shell
+flux create helmrelease "sealed-secrets-controller" \
+  --release-name="sealed-secrets-controller" \
+  --source="HelmRepository/sealed-secrets" \
+  --chart="sealed-secrets" \
+  --chart-version "$SEALED_SECRETS_CHART_VERSION" \
+  --values="sealed-secrets-values-v1.16.1.yaml" \
+  --target-namespace="flux-system" \
+  --crds=CreateReplace \
+  --export > ./clusters/dev/helm/releases/sealed-secrets-v1.16.1.yaml
+```
