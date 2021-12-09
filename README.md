@@ -74,3 +74,9 @@ flux create helmrelease "sealed-secrets-controller" \
   --crds=CreateReplace \
   --export > ./clusters/dev/helm/releases/sealed-secrets-v1.16.1.yaml
 ```
+
+After completing the above steps, `Flux CD` will start your `DOKS` cluster `reconciliation` (in about `one minute` or so, if using the `default` interval). If you don't want to wait, you can always `force` reconciliation via:
+
+```shell
+flux reconcile source git flux-system
+```
