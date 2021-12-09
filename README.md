@@ -131,3 +131,16 @@ If for some reason the `kubeseal` certificate fetch command hangs, you can use t
   ```shell
   curl --retry 5 --retry-connrefused localhost:8080/v1/cert.pem > pub-sealed-secrets-<YOUR_DOKS_CLUSTER_NAME_HERE>.pem
   ```
+
+## Creating the Prometheus Stack Helm Release
+
+In this step, you will use pre-made manifests to create the `Prometheus` Helm release for `Flux CD`. Then, `Flux` will trigger the `Prometheus` installation process for your `DOKS` cluster. The `Prometheus` stack deploys `Grafana` as well, so you need to set the `administrator` credentials for accessing the `dashboards`. You will learn how to use `kubeseal` CLI with `Sealed Secrets Controller` to encrypt `sensitive` data stored in `Kubernetes Secrets`. Then, you will see how the Flux CD `HelmRelease` manifest is used to `reference` Grafana `credentials` stored in the `Kubernetes Secret`.
+
+
+```shell
+kubectl create secret generic "prometheus-stack-credentials" \
+    --namespace flux-system \
+    --from-literal=grafana_admin_password=YWRtaW5TQS1MZXZpcwo= \
+    --dry-run=client -o yaml | kubeseal --cert=pub-sealed-secrets-sa-cluster-dev.pem \
+    --format=yaml > ./clusters/dev/helm/secrets/prometheus-stack-credentials-sealed.yaml
+```
