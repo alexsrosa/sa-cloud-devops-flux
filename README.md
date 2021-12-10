@@ -144,3 +144,38 @@ kubectl create secret generic "prometheus-stack-credentials" \
     --dry-run=client -o yaml | kubeseal --cert=pub-sealed-secrets-sa-cluster-dev.pem \
     --format=yaml > ./clusters/dev/helm/secrets/prometheus-stack-credentials-sealed.yaml
 ```
+
+After a few moments, please inspect the Prometheus `HelmRelease`:
+
+```shell
+flux get helmrelease kube-prometheus-stack
+```
+
+Now, check if the `prometheus-stack-credentials` Kubernetes secret was created as well (then, you can use `kubectl get secret prometheus-stack-credentials -n flux-system -o yaml` for secret contents inspection):
+
+```shell
+kubectl get secret prometheus-stack-credentials -n flux-system
+```
+
+Finally, perform a quick check of `Prometheus` stack main `services`, and `PVC`:
+
+- Prometheus dashboard: `kubectl port-forward svc/kube-prom-stack-kube-prome-prometheus 9090:9090 -n monitoring`.
+- Grafana dashboards: `kubectl --namespace monitoring port-forward svc/kube-prom-stack-grafana 3000:80`.
+- Prometheus PVC: `kubectl get pvc -n monitoring`.
+
+## Creating the Loki Stack Helm Release
+
+In this step, you will use pre-made manifests to create the `Loki` Helm release for `Flux CD`. Then, `Flux` will trigger the `Loki` installation process for your `DOKS` cluster. `Loki` needs a `DO Spaces bucket` for storing backups, hence you need to use `DO Spaces credentials`. You will learn how to use `kubeseal` CLI with `Sealed Secrets Controller` to encrypt `sensitive` data stored in `Kubernetes Secrets`. Then, you will see how the Flux CD `HelmRelease` manifest is used to `reference` DO Spaces `credentials` stored in the `Kubernetes Secret`.
+
+
+access_key_id = DO_SPACES_ACCESS_KEY
+secret_access_key = DO_SPACES_SECRET_KEY
+
+ ```shell
+ kubectl create secret generic "do-spaces-credentials" \
+    --namespace flux-system \
+    --from-literal=access_key_id=FW63MDAGKTWUJPLTJCPL \
+    --from-literal=secret_access_key=MSwuhp6IC77Qte1YzE2jKdKGHQOYVawk0K4usAneaaI \
+    --dry-run=client -o yaml | kubeseal --cert=pub-sealed-secrets-sa-cluster-dev.pem \
+    --format=yaml > ./clusters/dev/helm/secrets/do-spaces-credentials-sealed.yaml
+ ```
