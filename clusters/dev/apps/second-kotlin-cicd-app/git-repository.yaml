@@ -1,0 +1,14 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: second-kotlin-cicd-app
+  namespace: flux-system
+spec:
+  interval: 30s
+  ref:
+    branch: main
+  url: ssh://git@github.com/alexsrosa/second-kotlin-cicd-app.git
+  secretRef:
+    name: second-kotlin-cicd-app
+

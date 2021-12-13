@@ -12,19 +12,21 @@ flux check
 ### Create Registry file 
 
 ```shell
-flux create image repository fists-kotlin-cicd-app \ 
-  --image=registry.digitalocean.com/sa-container-registry-dev/fists-kotlin-cicd-app \ 
+flux create image repository second-kotlin-cicd-app \
+  --image=registry.digitalocean.com/sa-container-registry-dev/second-kotlin-cicd-app \ 
   --interval=1m \
-  --export > ./clusters/dev/first-kotlin-cicd-app-registry.yaml
+  --export > ./clusters/dev/apps/second-kotlin-cicd-app/image-repository.yaml
 ```
 
 ### Create Image Policy
 
 ```shell
-flux create image policy fists-kotlin-cicd-app \
-  --image-ref=fists-kotlin-cicd-app \
-  --select-semver=5.0.x \
-  --export > ./clusters/dev/apps/first-kotlin-cicd-app-policy.yaml
+flux create image policy second-kotlin-cicd-app \
+--image-ref=second-kotlin-cicd-app \
+--select-numeric=asc \
+--filter-regex='^main-[a-fA-F0-9]+-(?P<ts>.*)' \
+--filter-extract='$ts' \
+--export > ./clusters/dev/apps/second-kotlin-cicd-app/image-policy.yaml
 ```
 
 ### Create Image Update

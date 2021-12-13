@@ -1,0 +1,32 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+      messageTemplate: |
+        Automated image update by Flux
+
+        [ci skip]
+      signingKey:
+        secretRef:
+          name: second-kotlin-cicd-app
+    push:
+      branch: main
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: second-kotlin-cicd-app
+  update:
+    path: ./kustomize
+    strategy: Setters
+
