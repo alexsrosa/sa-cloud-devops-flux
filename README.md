@@ -179,3 +179,27 @@ secret_access_key = DO_SPACES_SECRET_KEY
     --dry-run=client -o yaml | kubeseal --cert=pub-sealed-secrets-sa-cluster-dev.pem \
     --format=yaml > ./clusters/dev/helm/secrets/do-spaces-credentials-sealed.yaml
  ```
+
+After a few moments, please inspect the Loki `HelmRelease`:
+
+```shell
+flux get helmrelease loki-stack
+```
+
+Finally, check if the `do-spaces-credentials` Kubernetes secret was created as well (then, you can use `kubectl get secret do-spaces-credentials -n flux-system -o yaml` for secret contents inspection):
+
+```shell
+kubectl get secret do-spaces-credentials -n flux-system
+```
+
+kubectl --namespace monitoring port-forward svc/kube-prom-stack-grafana 3000:80
+
+Next, open a web browser on [localhost:3000](http://localhost:3000), and follow below steps:
+
+1. Click the `Settings` gear from the left panel.
+2. Select `Data sources`.
+3. Click the `Add data source` blue button.
+4. Select `Loki` from the list and add `Loki` url `http://loki:3100`.
+5. Save and test.
+
+If everything goes well, a green label message will appear, saying `Data source connected and labels found.`
