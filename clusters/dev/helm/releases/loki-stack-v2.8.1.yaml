@@ -57,8 +57,8 @@ spec:
             cache_ttl: 24h
             shared_store: aws
           aws:
-            bucketnames: sa-loki-bucket
-            endpoint: https://sa-loki-bucket.fra1.digitaloceanspaces.com
+            bucketnames: sa-grafana-loki-bucket
+            endpoint: https://sa-grafana-loki-bucket.fra1.digitaloceanspaces.com
             region: fra1
             s3forcepathstyle: true
   valuesFrom:
