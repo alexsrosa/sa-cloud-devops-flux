@@ -182,6 +182,13 @@ secret_access_key = DO_SPACES_SECRET_KEY
     --from-literal=secret_access_key=MSwuhp6IC77Qte1YzE2jKdKGHQOYVawk0K4usAneaaI \
     --dry-run=client -o yaml | kubeseal --cert=pub-sealed-secrets-sa-cluster-dev.pem \
     --format=yaml > ./clusters/dev/helm/secrets/do-spaces-credentials-sealed.yaml
+    
+ kubectl create secret generic "do-spaces-credentials" \
+    --namespace monitoring \
+    --from-literal=access_key_id=FW63MDAGKTWUJPLTJCPL \
+    --from-literal=secret_access_key=MSwuhp6IC77Qte1YzE2jKdKGHQOYVawk0K4usAneaaI \
+    --dry-run=client -o yaml | kubeseal --cert=pub-sealed-secrets-sa-cluster-dev.pem \
+    --format=yaml > ./clusters/dev/helm/secrets/do-spaces-credentials-sealed.yaml
  ```
 
 After a few moments, please inspect the Loki `HelmRelease`:
