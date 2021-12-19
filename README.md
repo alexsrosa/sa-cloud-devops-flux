@@ -194,6 +194,7 @@ secret_access_key = DO_SPACES_SECRET_KEY
 After a few moments, please inspect the Loki `HelmRelease`:
 
 ```shell
+flux reconcile source git flux-system
 flux get helmrelease loki-stack
 ```
 
@@ -215,3 +216,7 @@ Next, open a web browser on [localhost:3000](http://localhost:3000), and follow 
 5. Save and test.
 
 If everything goes well, a green label message will appear, saying `Data source connected and labels found.`
+
+### Activate Space File Listing to view logs on Grafana Loki
+
+![](.assets/images/spaces-loki-file-listing.png)
