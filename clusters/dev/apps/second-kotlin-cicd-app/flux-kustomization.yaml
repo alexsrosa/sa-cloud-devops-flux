@@ -12,3 +12,17 @@ spec:
     kind: GitRepository
     name: second-kotlin-cicd-app
   targetNamespace: apps
+  patches:
+    - patch: |-
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: second-kotlin-cicd-app
+          namespace: apps
+        data:
+          application.properties: |
+            spring.application.name=second-kotlin-cicd-app
+      target:
+        name: second-kotlin-cicd-app
+        namespace: apps
+        kind: ConfigMap
