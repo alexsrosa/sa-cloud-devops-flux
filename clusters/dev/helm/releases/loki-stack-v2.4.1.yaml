@@ -58,7 +58,7 @@ spec:
             shared_store: aws
           aws:
             bucketnames: sa-grafana-loki-bucket
-            endpoint: https://sa-grafana-loki-bucket.fra1.digitaloceanspaces.com
+            endpoint: fra1.digitaloceanspaces.com
             region: fra1
             s3forcepathstyle: true
   valuesFrom:
