@@ -196,8 +196,9 @@ Finally, check if the `do-spaces-credentials` Kubernetes secret was created as w
 kubectl get secret do-spaces-credentials -n flux-system
 ```
 
+```shell
 kubectl --namespace monitoring port-forward svc/kube-prom-stack-grafana 3000:80
-
+```
 Next, open a web browser on [localhost:3000](http://localhost:3000), and follow below steps:
 
 1. Click the `Settings` gear from the left panel.
