@@ -34,6 +34,8 @@ spec:
           expression: "kube-.*"
     prometheus:
       enabled: false
+    alertmanager:
+      enabled: false
     fluent-bit:
       enabled: false
     grafana:
