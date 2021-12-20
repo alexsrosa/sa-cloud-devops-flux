@@ -59,6 +59,15 @@ spec:
               - monitoring
           endpoints:
             - port: "http-metrics"
+        - name: "second-kotlin-cicd-app"
+          selector:
+            matchLabels:
+              app: second-kotlin-cicd-app
+          namespaceSelector:
+            matchNames:
+              - apps
+          endpoints:
+            - port: "actuator/prometheus"
       prometheusSpec:
         storageSpec:
           volumeClaimTemplate:
