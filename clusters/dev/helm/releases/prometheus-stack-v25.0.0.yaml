@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      version: 23.2.0
+      version: 25.0.0
   install:
     createNamespace: true
     remediation:
@@ -69,7 +69,7 @@ spec:
             matchNames:
               - apps
           endpoints:
-            - port: web
+            - port: "http-metrics"
               path: "/actuator/prometheus"
               interval: 15s
       prometheusSpec:
