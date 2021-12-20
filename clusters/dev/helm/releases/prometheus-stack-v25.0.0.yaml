@@ -69,7 +69,7 @@ spec:
             matchNames:
               - apps
           endpoints:
-            - port: "http-metrics"
+            - port: http-traffic
               path: "/actuator/prometheus"
               interval: 15s
       prometheusSpec:
