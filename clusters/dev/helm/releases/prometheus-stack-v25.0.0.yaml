@@ -65,13 +65,16 @@ spec:
           selector:
             matchLabels:
               app: second-kotlin-cicd-app
+              namespace: apps
           namespaceSelector:
             matchNames:
               - apps
           endpoints:
             - port: http-traffic
               path: "/actuator/prometheus"
+              metricPath: "/actuator/prometheus"
               interval: 15s
+              namespace: apps
       prometheusSpec:
         storageSpec:
           volumeClaimTemplate:
