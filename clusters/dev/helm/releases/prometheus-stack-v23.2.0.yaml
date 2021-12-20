@@ -36,8 +36,10 @@ spec:
       enabled: false
     kubeScheduler:
       enabled: false
+    # https://github.com/helm/charts/blob/master/stable/prometheus-operator/README.md#prometheus
     prometheus:
       enabled: true
+      # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#servicemonitorspec
       additionalServiceMonitors:
         - name: "loki-monitor"
           selector:
@@ -67,7 +69,9 @@ spec:
             matchNames:
               - apps
           endpoints:
-            - port: "actuator/prometheus"
+            - port: web
+              path: "/actuator/prometheus"
+              interval: 15s
       prometheusSpec:
         storageSpec:
           volumeClaimTemplate:
