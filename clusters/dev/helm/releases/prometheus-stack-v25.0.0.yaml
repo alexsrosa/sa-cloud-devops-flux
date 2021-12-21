@@ -30,20 +30,20 @@ spec:
       rules:
         etcd: false
         kubeScheduler: false
+# https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+# https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
     grafana:
       enabled: true
       persistence:
         enabled: true
-      grafanaSpec:
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              accessModes:
-                - ReadWriteOnce
-              resources:
-                requests:
-                  storage: 5Gi
-              storageClassName: do-block-storage
+        storageClassName: do-block-storage
+      dashboard:
+        default:
+        # https://grafana:com/grafana/dashboards/6756:
+          spring-boot-statistics:
+            gnetId: 6756
+            datasource: Prometheus
+
     kubeEtcd:
       enabled: false
     kubeScheduler:
