@@ -30,25 +30,23 @@ spec:
       rules:
         etcd: false
         kubeScheduler: false
-# https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
-# https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+
+    # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+    # https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+    # kubectl --namespace monitoring port-forward svc/kube-prom-stack-grafana 3000:80
     grafana:
       enabled: true
       persistence:
         enabled: true
         storageClassName: do-block-storage
-      dashboard:
-        default:
-        # https://grafana:com/grafana/dashboards/6756:
-          spring-boot-statistics:
-            gnetId: 6756
-            datasource: Prometheus
 
     kubeEtcd:
       enabled: false
     kubeScheduler:
       enabled: false
+
     # https://github.com/helm/charts/blob/master/stable/prometheus-operator/README.md#prometheus
+    # kubectl port-forward svc/kube-prom-stack-kube-prome-prometheus 9090:9090 -n monitoring
     prometheus:
       enabled: true
       # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#servicemonitorspec
