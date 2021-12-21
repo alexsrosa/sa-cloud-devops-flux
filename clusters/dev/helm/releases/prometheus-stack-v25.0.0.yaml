@@ -32,6 +32,15 @@ spec:
         kubeScheduler: false
     grafana:
       enabled: true
+      persistance:
+        enabled: true
+        type: pvc
+        storageClassName: do-block-storage
+        accessModes:
+          - ReadWriteOnce
+        size: 10Gi
+        finalizers:
+          - kubernetes.io/pvc-protection
     kubeEtcd:
       enabled: false
     kubeScheduler:
@@ -80,7 +89,7 @@ spec:
                 - ReadWriteOnce
               resources:
                 requests:
-                  storage: 5Gi
+                  storage: 10Gi
               storageClassName: do-block-storage
     prometheusOperator:
       enabled: true
