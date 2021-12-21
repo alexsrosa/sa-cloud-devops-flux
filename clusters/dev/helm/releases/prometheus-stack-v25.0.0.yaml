@@ -38,7 +38,7 @@ spec:
         storageClassName: do-block-storage
         accessModes:
           - ReadWriteOnce
-        size: 10Gi
+        size: 5Gi
         finalizers:
           - kubernetes.io/pvc-protection
     kubeEtcd:
@@ -89,7 +89,7 @@ spec:
                 - ReadWriteOnce
               resources:
                 requests:
-                  storage: 10Gi
+                  storage: 5Gi
               storageClassName: do-block-storage
     prometheusOperator:
       enabled: true
