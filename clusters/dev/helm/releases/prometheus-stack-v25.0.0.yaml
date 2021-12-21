@@ -32,6 +32,8 @@ spec:
         kubeScheduler: false
     grafana:
       enabled: true
+      persistence:
+        enabled: true
       grafanaSpec:
         storageSpec:
           volumeClaimTemplate:
